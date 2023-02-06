@@ -2,6 +2,9 @@ import { gsap } from "gsap";
 
 const images = document.querySelectorAll(".image");
 const isMobile = window.matchMedia("(max-width: 768px)").matches;
+const cursor = document.querySelector(".cursor");
+const cursorSize = 96;
+const cursorMargin = cursorSize / 2;
 
 let mouse = { x: 0, y: 0 };
 let velocity = { x: 0, y: 0 };
@@ -10,6 +13,7 @@ let friction = 0.9;
 window.addEventListener("mousemove", (event) => {
   mouse.x = event.clientX;
   mouse.y = event.clientY;
+  customCursor(mouse.x, mouse.y);
 });
 
 const loadImage = (img, index) => {
@@ -42,6 +46,16 @@ const updateImage = (img, velocity, speed) => {
   img.style.transform = `translateX(${x}px) translateY(${y}px)`;
 };
 
+const initCursor = () => {
+  cursor.style.left = 50 + "%";
+  cursor.style.top = 50 + "%";
+}
+
+const customCursor = (x, y) => {
+  cursor.style.left = x - cursorMargin + "px";
+  cursor.style.top = y - cursorMargin + "px";
+};
+
 const backgroundMotion = (img, speed, friction, mouse, velocity) => {
   velocity = updateVelocity(mouse, velocity, speed, friction);
   updateImage(img, velocity, speed);
@@ -61,3 +75,5 @@ images.forEach((img, index) => {
     backgroundMotion(img, speed, friction, mouse, velocity);
   }
 });
+
+requestAnimationFrame(() => initCursor());

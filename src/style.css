@@ -1,8 +1,10 @@
 :root {
   --gray: #eee;
+  --color-negative: #fff;
   --color-primary: #222;
-  --header-font-size: 16px;
+  --font-size: 16px;
   --bg: #e7b0ca;
+  --bg-negative: #000;
   --color: #cc4c32;
   --font-base: "Inter", sans-serif;
   --font-display: "Poppins", sans-serif;
@@ -10,7 +12,7 @@
 
 @media screen and (max-width: 767px) {
   :root {
-    --header-font-size: 14px;
+    --font-size: 14px;
   }
 }
 
@@ -18,6 +20,7 @@ body,
 html {
   margin: 0;
   padding: 0;
+  cursor: none;
 }
 
 .header {
@@ -38,7 +41,7 @@ html {
   color: var(--color-primary);
   position: relative;
   font-family: var(--font-base);
-  font-size: var(--header-font-size);
+  font-size: var(--font-size);
 }
 
 .header a::after {
@@ -147,11 +150,37 @@ img {
   grid-row: 10 / 12;
 }
 
+.cursor {
+  width: 96px;
+  height: 96px;
+  position: fixed;
+  z-index: 1;
+  border-radius: 96px;
+  top: 0;
+  left: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-color: var(--bg-negative);
+  text-transform: uppercase;
+  color: var(--color-negative);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: var(--font-base);
+  font-size: var(--font-size);
+  font-weight: 600;
+}
+
 @media screen and (max-width: 1024px) {
   .grid {
     top: -10%;
     left: -20%;
     right: -20%;
     width: 140%;
+  }
+
+  .cursor {
+    display: none;
   }
 }

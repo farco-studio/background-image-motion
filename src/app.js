@@ -1,10 +1,8 @@
 import { gsap } from "gsap";
+import { initCursor, customCursor } from "./cursor";
 
 const images = document.querySelectorAll(".image");
 const isMobile = window.matchMedia("(max-width: 768px)").matches;
-const cursor = document.querySelector(".cursor");
-const cursorSize = 96;
-const cursorMargin = cursorSize / 2;
 
 let mouse = { x: 0, y: 0 };
 let velocity = { x: 0, y: 0 };
@@ -17,8 +15,11 @@ window.addEventListener("mousemove", (event) => {
 });
 
 const loadImage = (img, index) => {
-  gsap.to(img, { delay: index * 2, scale: 1, opacity: 1, duration: 2 });
+  setTimeout(() => {
+    gsap.to(img, { delay: index * 0.5, scale: 1, opacity: 1, duration: 3, ease: 'ease-out' });
+  }, 300);
 };
+
 
 const imageRotation = (img, speed, index) => {
   gsap.to(img, {
@@ -44,16 +45,6 @@ const updateImage = (img, velocity, speed) => {
   const x = -velocity.x * speed;
   const y = -velocity.y * speed;
   img.style.transform = `translateX(${x}px) translateY(${y}px)`;
-};
-
-const initCursor = () => {
-  cursor.style.left = 50 + "%";
-  cursor.style.top = 50 + "%";
-}
-
-const customCursor = (x, y) => {
-  cursor.style.left = x - cursorMargin + "px";
-  cursor.style.top = y - cursorMargin + "px";
 };
 
 const backgroundMotion = (img, speed, friction, mouse, velocity) => {

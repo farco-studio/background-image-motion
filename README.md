@@ -4,7 +4,7 @@
 
 Free, refined interactions to inspire our community and make the web a more beautiful place.
 
-[Demo](https://farco-background-motion.onrender.com/)
+[Demo](https://interactions-mouse-parallax.onrender.com/)
 
 
 ## Installation
